@@ -9,7 +9,7 @@ The checksum of this command is calculated from a CRC-8 Dallas/Maxim of `AA 12 0
 
 
 # Controller Enable/Disable
-|CB|Section|Information  |
+|CB|Section|Information|
 |--|--|--|
 |`0xE0`|Enable|Enables the Arduino to control the motors|
 |`0xE1`|Disable|Gives stop command to the driver|
@@ -18,6 +18,8 @@ The checksum of this command is calculated from a CRC-8 Dallas/Maxim of `AA 12 0
 |`0xED`|Disable|Cuts power to all servos|
 |`0xEE`|Disable|Cuts power to both DC motors|
 |`0xEF`|Disable|Cuts power to all motors|
+
+
 The first command enables the Arduino to control motors (sent on program startup).The second sends a stop command for all motors. The third stops the DC motors by setting the 2 directions pins to ground (the motor is still powered). The fourth pulls the enable pins low, so the motors don't recieve power, but are ready to resume rotation on enable command. The fifth command pulls the driver enable pin to ground, cutting power to the driver and all the servos. The sixth sets the direction and enable pins to ground, immediately halting rotation. The seventh command is a shorthand for the previous two.
 
 These commands have a special structure, since they don't need to be numbered or error checked. Their structure is `[SYN] 0xFF [CB] [CB] 0xC3`, without checksums. The packet number is always 0xFF, to cover the special case. If the 2 command bytes aren't the same, a "Retrasmit 0xFF" is requested. An example packet is `0xAA 0xFF 0xEF 0xEF 0xC3`, cutting power to all motors.
