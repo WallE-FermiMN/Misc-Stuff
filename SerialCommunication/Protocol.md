@@ -2,7 +2,7 @@
 
 Boards connected via USB UART.
 # Generic command format
-All commands start with the byte `0xAA` (SYN Byte), followed by a packet number byte, the command byte and eventual information data. This is then followed by the checksum start byte `0x0F`, and from the checksum byte. At the end the stop byte `0xC3` is present. The checksum is a CRC-8 Dallas/Maxim of the data frame (setting the checksum byte as `0x00`).
+All commands start with the byte `0xAA` (SYN Byte), followed by a packet number byte, the command byte and eventual information data. This is then followed by the checksum start byte `0x0F`, and from the checksum byte. At the end the stop byte `0xAA` is present. The checksum is a CRC-8 Dallas/Maxim of the data frame (setting the checksum byte as `0x00`).
 Example command `0x0A`, packet number `0x12`, with data `0x01 0x02`:
 `AA 12 0A 01 02 0F ?? C3`
 The checksum of this command is calculated from a CRC-8 Dallas/Maxim of `AA 12 0A 01 02 0F 00 C3`, which results `0x65`. The resulting packet is `AA 12 0A 01 02 0F 65 C3`.
