@@ -27,6 +27,7 @@ Example: Ease in 142 milliseconds to the value 2351, on channel 4
 If split, the final sequence is `04 92F 08E` in hex, or `00000100 100100101111 000010001110` in binary. corresponding to `4 2351 142`.
 ### Servos: Stop all
 Command byte: `2` (`55` with hamming code)
+
 Data: No data, this command stops immediately all servos, by setting the PWM register values to 0
 ### DC: Ease Speed + direction
 Command byte: `3` (`87` with hamming code)
